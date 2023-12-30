@@ -14,6 +14,8 @@
     <name>ai-llamacpp-helloworld</name>
     <description>Simple AI Application using Java-Llama.cpp Service</description>
     <properties>
+        <spring-ai.version>0.8.0-SNAPSHOT</spring-ai.version>
+        <java-llamacpp.version>0.8.0-SNAPSHOT</java-llamacpp.version>
         <java.version>21</java.version>
     </properties>
     <dependencies>
@@ -27,7 +29,39 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://github.com/spring-projects/spring-ai/blob/main/spring-ai-spring-boot-starters/spring-ai-starter-openai/pom.xml -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-core</artifactId>
+            <version>${spring-ai.version}</version>
+        </dependency>
+
+        <!-- https://github.com/kherud/java-llama.cpp#quick-start -->
+        <dependency>
+            <groupId>de.kherud</groupId>
+            <artifactId>llama</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
     </dependencies>
+
+    <!-- https://docs.spring.io/spring-ai/reference/getting-started.html#_dependencies -->
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
