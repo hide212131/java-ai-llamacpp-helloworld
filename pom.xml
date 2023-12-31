@@ -15,7 +15,7 @@
     <description>Simple AI Application using Java-Llama.cpp Service</description>
     <properties>
         <spring-ai.version>0.8.0-SNAPSHOT</spring-ai.version>
-        <java-llamacpp.version>0.8.0-SNAPSHOT</java-llamacpp.version>
+        <java-llamacpp.version>2.3.1</java-llamacpp.version>
         <java.version>21</java.version>
     </properties>
     <dependencies>
@@ -64,7 +64,7 @@
         <dependency>
             <groupId>de.kherud</groupId>
             <artifactId>llama</artifactId>
-            <version>2.3.1</version>
+            <version>${java-llamacpp.version}</version>
         </dependency>
 
     </dependencies>

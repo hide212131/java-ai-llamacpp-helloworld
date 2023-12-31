@@ -76,10 +76,10 @@ public class LlamaCppChatClient implements ChatClient, StreamingChatClient {
 
         return Flux.using(
                 () -> new LlamaModel(modelPath, modelParams),
-                model -> Flux.fromIterable(model.generate(prompt.getContents()))
+                model -> Flux.fromIterable(model.generate(prompt.getContents(), inferParams))
                         .map(output -> {
                             var text = output.text;
-                            System.out.print(text);
+                            // System.out.print(text);
                             return new ChatResponse(List.of(new Generation(text)));
                         }),
                 LlamaModel::close
