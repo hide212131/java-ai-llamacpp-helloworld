@@ -1,5 +1,7 @@
 package com.example.aillamacpphelloworld;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import de.kherud.llama.InferenceParameters;
 import de.kherud.llama.LlamaModel;
 import de.kherud.llama.ModelParameters;
@@ -14,6 +16,8 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class LlamaCppChatClient implements ChatClient, StreamingChatClient {
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private String modelHome;
 
@@ -61,7 +65,7 @@ public class LlamaCppChatClient implements ChatClient, StreamingChatClient {
 
     @Override
     public Flux<ChatResponse> generateStream(Prompt prompt) {
-
+        logger.info("generateStream: prompt={}", prompt.getContents());
         LlamaModel.setLogger((level, message) -> System.out.print(message));
         var modelParams = new ModelParameters()
                 .setNGpuLayers(1);
@@ -85,4 +89,5 @@ public class LlamaCppChatClient implements ChatClient, StreamingChatClient {
                 LlamaModel::close
         );
     }
+
 }

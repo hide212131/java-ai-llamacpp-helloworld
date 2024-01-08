@@ -9,7 +9,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.ai.chat.ChatResponse;
-import org.springframework.ai.prompt.Prompt;
+import org.springframework.ai.prompt.messages.AssistantMessage;
+import org.springframework.ai.prompt.messages.Message;
+import org.springframework.ai.prompt.messages.SystemMessage;
 import org.springframework.ai.prompt.messages.UserMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -57,18 +59,20 @@ public class ChatApiController {
             consumes = {"application/json"}
     )
 
-    public Flux<CreateChatCompletionStreamResponse> _createChatCompletion(
+    public Flux<CreateChatCompletionStreamResponse> createChatCompletion(
             @Parameter(name = "CreateChatCompletionRequest", description = "", required = true) @Valid @RequestBody CreateChatCompletionRequest createChatCompletionRequest
     ) {
         var messages = createChatCompletionRequest.getMessages();
-        var message = messages.stream()
-                .filter(m -> m instanceof ChatCompletionRequestUserMessage)
-                .map(m -> (ChatCompletionRequestUserMessage) m)
-                .reduce((first, second) -> second)
-                .orElseThrow();
+        var prompt = new LlamaPrompt(messages.stream().map(message ->
+                (Message) switch (message) {
+                    case ChatCompletionRequestSystemMessage systemMessage ->
+                            new SystemMessage(systemMessage.getContent());
+                    case ChatCompletionRequestUserMessage userMessage -> new UserMessage(userMessage.getContent());
+                    case ChatCompletionRequestAssistantMessage assistantMessage ->
+                            new AssistantMessage(assistantMessage.getContent());
+                    case null, default -> throw new RuntimeException("Unknown message type");
+                }).toList());
 
-        var prompt = new Prompt(new UserMessage(message.getContent()));
-        //var chatResponse = chatClient.generate(prompt);
         Flux<ChatResponse> chatResponseFlux = chatClient.generateStream(prompt);
         var date = System.currentTimeMillis();
         return chatResponseFlux.map(chatResponse -> {
@@ -97,4 +101,7 @@ public class ChatApiController {
         ));
 
     }
+
+
+
 }
