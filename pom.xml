@@ -19,17 +19,6 @@
         <java.version>21</java.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <!-- Exclude the Tomcat dependency -->
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -91,8 +80,6 @@
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.0.0</version>
-            <scope>provided</scope>
         </dependency>
 
     </dependencies>
@@ -131,8 +118,8 @@
                                 ${project.basedir}/src/main/resources/openai.yaml
                             </inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>com.example.openapi.api</apiPackage>
-                            <modelPackage>com.example.openapi.model</modelPackage>
+                            <apiPackage>com.example.aillamacpphelloworld.openapi.api</apiPackage>
+                            <modelPackage>com.example.aillamacpphelloworld.openapi.model</modelPackage>
                             <supportingFilesToGenerate>
                                 ApiUtil.java
                             </supportingFilesToGenerate>

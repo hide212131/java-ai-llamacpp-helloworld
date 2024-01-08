@@ -1,6 +1,6 @@
 package com.example.aillamacpphelloworld;
 
-import com.example.openapi.model.*;
+import com.example.aillamacpphelloworld.openapi.model.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

@@ -1,8 +1,8 @@
 package com.example.aillamacpphelloworld;
 
-import com.example.openapi.api.ModelsApi;
-import com.example.openapi.model.ListModelsResponse;
-import com.example.openapi.model.Model;
+import com.example.aillamacpphelloworld.openapi.api.ModelsApi;
+import com.example.aillamacpphelloworld.openapi.model.ListModelsResponse;
+import com.example.aillamacpphelloworld.openapi.model.Model;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

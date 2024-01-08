@@ -1,6 +1,6 @@
 package com.example.aillamacpphelloworld;
 
-import com.example.openapi.model.ChatCompletionRequestMessage;
+import com.example.aillamacpphelloworld.openapi.model.ChatCompletionRequestMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.openapitools.jackson.nullable.JsonNullableModule;

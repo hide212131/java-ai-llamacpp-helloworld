@@ -1,9 +1,9 @@
 package com.example.aillamacpphelloworld;
 
-import com.example.openapi.model.ChatCompletionRequestAssistantMessage;
-import com.example.openapi.model.ChatCompletionRequestMessage;
-import com.example.openapi.model.ChatCompletionRequestSystemMessage;
-import com.example.openapi.model.ChatCompletionRequestUserMessage;
+import com.example.aillamacpphelloworld.openapi.model.ChatCompletionRequestAssistantMessage;
+import com.example.aillamacpphelloworld.openapi.model.ChatCompletionRequestMessage;
+import com.example.aillamacpphelloworld.openapi.model.ChatCompletionRequestSystemMessage;
+import com.example.aillamacpphelloworld.openapi.model.ChatCompletionRequestUserMessage;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
